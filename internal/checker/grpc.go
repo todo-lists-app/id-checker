@@ -9,18 +9,12 @@ import (
 )
 
 type Server struct {
-	cfg *config.Config
+	Config *config.Config
 	pb.UnimplementedIdCheckerServiceServer
 }
 
-func New(cfg *config.Config) *Server {
-	return &Server{
-		cfg: cfg,
-	}
-}
-
 func (s *Server) CheckId(ctx context.Context, r *pb.CheckIdRequest) (*pb.CheckIdResponse, error) {
-	validId, err := CheckId(ctx, s.cfg, r.GetId())
+	validId, err := CheckId(ctx, s.Config, r.GetId())
 	if err != nil {
 		return &pb.CheckIdResponse{
 			IsValid: false,

@@ -26,7 +26,7 @@ RUN apk add ca-certificates && update-ca-certificates
 RUN apk add --update tzdata
 RUN rm -rf /var/cache/apk/*
 
-COPY --from=builder /service /home/
+COPY --from=builder /${SERVICE_NAME} /home/
 
 ## Set the timezone
 ENV TZ=Europe/London

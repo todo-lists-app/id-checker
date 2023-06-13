@@ -7,7 +7,9 @@ import (
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/keloran/go-healthcheck"
 	"github.com/keloran/go-probe"
+	"github.com/todo-lists-app/id-checker/internal/checker"
 	"github.com/todo-lists-app/id-checker/internal/config"
+	pb "github.com/todo-lists-app/protobufs/generated/id_checker/v1"
 	"google.golang.org/grpc"
 	"net"
 	"net/http"
@@ -35,6 +37,10 @@ func startGRPC(port int, errChan chan error, cfg *config.Config) {
 		errChan <- logs.Errorf("failed to listen: %v", err)
 	}
 	gs := grpc.NewServer()
+	logs.Local().Infof("starting grpc on %s", lis.Addr().String())
+	pb.RegisterIdCheckerServiceServer(gs, &checker.Server{
+		Config: cfg,
+	})
 	if err := gs.Serve(lis); err != nil {
 		errChan <- logs.Errorf("failed to serve: %v", err)
 	}
@@ -54,6 +60,7 @@ func startHTTP(port int, errChan chan error, cfg *config.Config) {
 		IdleTimeout:       15 * time.Second,
 		ReadTimeout:       15 * time.Second,
 	}
+	logs.Local().Infof("starting http on %s", srv.Addr)
 	if err := srv.ListenAndServe(); err != nil {
 		errChan <- logs.Errorf("failed to serve: %v", err)
 	}
