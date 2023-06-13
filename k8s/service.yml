@@ -4,7 +4,7 @@ metadata:
   name: id-checker
   namespace: todo-list
   labels:
-    app: keys-service
+    app: id-checker
 spec:
   replicas: 2
   selector:
@@ -36,6 +36,7 @@ spec:
               port: 80
           ports:
             - containerPort: 80
+            - containerPort: 3000
           env:
             - name: KEYCLOAK_SECRET
               valueFrom:
