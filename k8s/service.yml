@@ -37,16 +37,26 @@ spec:
           ports:
             - containerPort: 80
           env:
-            - name: KEYCLOAK_TOKEN
+            - name: KEYCLOAK_SECRET
               valueFrom:
                 secretKeyRef:
                   name: id-checker-secrets
-                  key: keycloak-token
+                  key: keycloak-secret
             - name: KEYCLOAK_CLIENT
               valueFrom:
                 secretKeyRef:
                   name: id-checker-secrets
                   key: keycloak-client
+            - name: KEYCLOAK_REALM
+              valueFrom:
+                secretKeyRef:
+                  key: keycloak-realm
+                  name: id-checker-secrets
+            - name: KEYCLOAK_HOSTNAME
+              valueFrom:
+                secretKeyRef:
+                  key: keycloak-hostname
+                  name: id-checker-secrets
 
 ---
 apiVersion: v1
