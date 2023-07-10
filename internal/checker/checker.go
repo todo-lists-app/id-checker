@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-func CheckId(ctx context.Context, cfg *config.Config, userId string) (bool, error) {
+func CheckId(ctx context.Context, cfg *config.Config, userId, accessToken string) (bool, error) {
 	client := gocloak.NewClient(cfg.Keycloak.Host)
 	cond := func(resp *resty.Response, err error) bool {
 		if resp != nil && resp.IsError() {
@@ -35,5 +35,10 @@ func CheckId(ctx context.Context, cfg *config.Config, userId string) (bool, erro
 		return false, nil
 	}
 
-	return true, nil
+	retroToken, err := client.RetrospectToken(ctx, accessToken, cfg.Keycloak.Client, cfg.Keycloak.Secret, cfg.Keycloak.Realm)
+	if err != nil {
+		return false, logs.Errorf("error introspecting token: %v", err)
+	}
+
+	return *retroToken.Active, nil
 }

@@ -60,6 +60,8 @@ github.com/todo-lists-app/protobufs v0.0.0-20230613162122-7624a4937715 h1:IFjpw2
 github.com/todo-lists-app/protobufs v0.0.0-20230613162122-7624a4937715/go.mod h1:++aQjX2RgYmrKu32JKXipEG1H2vu/bqMTCdR03ZPrPM=
 github.com/todo-lists-app/protobufs v0.0.0-20230613162415-7852fd7259ca h1:48G48rLxGiGpG7U5hCMZWQtGSH99LLipldSyw6ow7zY=
 github.com/todo-lists-app/protobufs v0.0.0-20230613162415-7852fd7259ca/go.mod h1:++aQjX2RgYmrKu32JKXipEG1H2vu/bqMTCdR03ZPrPM=
+github.com/todo-lists-app/protobufs v0.0.0-20230710081248-476dd05ee743 h1:Iv2p71q+I7PR9Vs9fya2WzRe1i4aP7H7GgR12oHohSc=
+github.com/todo-lists-app/protobufs v0.0.0-20230710081248-476dd05ee743/go.mod h1:++aQjX2RgYmrKu32JKXipEG1H2vu/bqMTCdR03ZPrPM=
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.2.1/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.4.13/go.mod h1:6yULJ656Px+3vBD8DxQVa3kxgyrAnzto9xy5taEt/CY=

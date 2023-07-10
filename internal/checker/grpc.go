@@ -14,7 +14,7 @@ type Server struct {
 }
 
 func (s *Server) CheckId(ctx context.Context, r *pb.CheckIdRequest) (*pb.CheckIdResponse, error) {
-	validId, err := CheckId(ctx, s.Config, r.GetId())
+	validId, err := CheckId(ctx, s.Config, r.GetId(), r.GetAccessToken())
 	if err != nil {
 		return &pb.CheckIdResponse{
 			IsValid: false,

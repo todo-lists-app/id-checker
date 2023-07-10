@@ -9,7 +9,7 @@ require (
 	github.com/go-resty/resty/v2 v2.7.0
 	github.com/gogo/protobuf v1.3.2
 	github.com/hashicorp/vault/sdk v0.9.1
-	github.com/todo-lists-app/protobufs v0.0.0-20230613162415-7852fd7259ca
+	github.com/todo-lists-app/protobufs v0.0.0-20230710081248-476dd05ee743
 )
 
 require (
