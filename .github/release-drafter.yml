@@ -66,4 +66,4 @@ version-resolver:
 exclude-labels:
   - 'skip-changelog'
 
-change-template: '- [#$NUMBER](https://github.com/todo-lists-app/id-checker/pull/$NUMBER) $TITLE (@$AUTHOR)'
+#change-template: '- [#$NUMBER](https://github.com/todo-lists-app/id-checker/pull/$NUMBER) $TITLE (@$AUTHOR)'
