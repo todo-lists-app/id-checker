@@ -26,7 +26,7 @@ func (s *Service) Start() error {
 	errChan := make(chan error)
 
 	go startGRPC(s.Config.Local.GRPCPort, errChan, s.Config)
-	go startHTTP(s.Config.Local.HTTPPort, errChan, s.Config)
+	go startHTTP(s.Config.Local.HTTPPort, errChan)
 
 	return <-errChan
 }
@@ -46,7 +46,7 @@ func startGRPC(port int, errChan chan error, cfg *config.Config) {
 	}
 }
 
-func startHTTP(port int, errChan chan error, cfg *config.Config) {
+func startHTTP(port int, errChan chan error) {
 	r := chi.NewRouter()
 	r.Use(middleware.Heartbeat("/ping"))
 	r.Get("/health", healthcheck.HTTP)
