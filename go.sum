@@ -77,6 +77,8 @@ github.com/todo-lists-app/protobufs v0.0.0-20230710081248-476dd05ee743 h1:Iv2p71
 github.com/todo-lists-app/protobufs v0.0.0-20230710081248-476dd05ee743/go.mod h1:++aQjX2RgYmrKu32JKXipEG1H2vu/bqMTCdR03ZPrPM=
 github.com/todo-lists-app/protobufs v0.0.0-20230728215834-aaf52566b992 h1:uw5dEjgAFGw5TcuqtVT+ngZOxRXDoIRxFfpbcU1jUe4=
 github.com/todo-lists-app/protobufs v0.0.0-20230728215834-aaf52566b992/go.mod h1:++aQjX2RgYmrKu32JKXipEG1H2vu/bqMTCdR03ZPrPM=
+github.com/todo-lists-app/protobufs v0.0.0-20230813210309-8801c8db57fd h1:qJSbzKN7EGCdLgfdM57c2Sp/6sIrQhGZrxuJN/HvCYs=
+github.com/todo-lists-app/protobufs v0.0.0-20230813210309-8801c8db57fd/go.mod h1:++aQjX2RgYmrKu32JKXipEG1H2vu/bqMTCdR03ZPrPM=
 github.com/yuin/goldmark v1.4.13/go.mod h1:6yULJ656Px+3vBD8DxQVa3kxgyrAnzto9xy5taEt/CY=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
 golang.org/x/crypto v0.0.0-20210921155107-089bfa567519/go.mod h1:GvvjBRRGRdwPK5ydBHafDWAxML/pGHZbMvKqRZ5+Abc=
@@ -137,6 +139,8 @@ google.golang.org/genproto/googleapis/rpc v0.0.0-20230525234030-28d5490b6b19 h1:
 google.golang.org/genproto/googleapis/rpc v0.0.0-20230525234030-28d5490b6b19/go.mod h1:66JfowdXAEgad5O9NnYcsNPLCPZJD++2L9X0PCMODrA=
 google.golang.org/genproto/googleapis/rpc v0.0.0-20230807174057-1744710a1577 h1:wukfNtZmZUurLN/atp2hiIeTKn7QJWIQdHzqmsOnAOk=
 google.golang.org/genproto/googleapis/rpc v0.0.0-20230807174057-1744710a1577/go.mod h1:+Bk1OCOj40wS2hwAMA+aCW9ypzm63QTBBHp6lQ3p+9M=
+google.golang.org/genproto/googleapis/rpc v0.0.0-20230814215434-ca7cfce7776a h1:5rTPHLf5eLPfqGvw3fLpEmUpko2Ky91ft14LxGs5BZc=
+google.golang.org/genproto/googleapis/rpc v0.0.0-20230814215434-ca7cfce7776a/go.mod h1:+Bk1OCOj40wS2hwAMA+aCW9ypzm63QTBBHp6lQ3p+9M=
 google.golang.org/grpc v1.14.0/go.mod h1:yo6s7OP7yaDglbqo1J04qKzAhqBH6lvTonzMVmEdcZw=
 google.golang.org/grpc v1.57.0 h1:kfzNeI/klCGD2YPMUlaGNT3pxvYfga7smW3Vth8Zsiw=
 google.golang.org/grpc v1.57.0/go.mod h1:Sd+9RMTACXwmub0zcNY2c4arhtrbBYD1AUHI/dt16Mo=
