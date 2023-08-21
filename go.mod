@@ -2,8 +2,6 @@ module github.com/todo-lists-app/id-checker
 
 go 1.21
 
-toolchain go1.21.0
-
 require (
 	github.com/Nerzal/gocloak/v13 v13.8.0
 	github.com/bugfixes/go-bugfixes v0.9.7
