@@ -2,15 +2,16 @@ package checker
 
 import (
 	"context"
+	"strings"
+	"time"
+
 	"github.com/Nerzal/gocloak/v13"
 	"github.com/bugfixes/go-bugfixes/logs"
 	"github.com/go-resty/resty/v2"
-	"github.com/todo-lists-app/id-checker/internal/config"
-	"strings"
-	"time"
+	gc "github.com/keloran/go-config"
 )
 
-func CheckId(ctx context.Context, cfg *config.Config, userId, accessToken string) (bool, error) {
+func CheckId(ctx context.Context, cfg *gc.Config, userId, accessToken string) (bool, error) {
 	client := gocloak.NewClient(cfg.Keycloak.Host)
 	cond := func(resp *resty.Response, err error) bool {
 		if resp != nil && resp.IsError() {
