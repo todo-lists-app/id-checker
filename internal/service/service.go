@@ -2,23 +2,24 @@ package service
 
 import (
 	"fmt"
-	"github.com/bugfixes/go-bugfixes/logs"
-	"github.com/go-chi/chi/v5"
-	"github.com/go-chi/chi/v5/middleware"
-	"github.com/keloran/go-healthcheck"
-	"github.com/keloran/go-probe"
-	"github.com/todo-lists-app/id-checker/internal/checker"
-	"github.com/todo-lists-app/id-checker/internal/config"
-	pb "github.com/todo-lists-app/protobufs/generated/id_checker/v1"
-	"google.golang.org/grpc"
 	"net"
 	"net/http"
 	"time"
+
+	"github.com/bugfixes/go-bugfixes/logs"
+	"github.com/go-chi/chi/v5"
+	"github.com/go-chi/chi/v5/middleware"
+	gc "github.com/keloran/go-config"
+	"github.com/keloran/go-healthcheck"
+	"github.com/keloran/go-probe"
+	"github.com/todo-lists-app/id-checker/internal/checker"
+	pb "github.com/todo-lists-app/protobufs/generated/id_checker/v1"
+	"google.golang.org/grpc"
 )
 
 // Service is the service
 type Service struct {
-	Config *config.Config
+	Config *gc.Config
 }
 
 // Start the service
@@ -31,7 +32,7 @@ func (s *Service) Start() error {
 	return <-errChan
 }
 
-func startGRPC(port int, errChan chan error, cfg *config.Config) {
+func startGRPC(port int, errChan chan error, cfg *gc.Config) {
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
 	if err != nil {
 		errChan <- logs.Errorf("failed to listen: %v", err)

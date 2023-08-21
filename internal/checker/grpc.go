@@ -3,13 +3,14 @@ package checker
 import (
 	"context"
 	"fmt"
+
 	"github.com/hashicorp/vault/sdk/helper/pointerutil"
-	"github.com/todo-lists-app/id-checker/internal/config"
+	gc "github.com/keloran/go-config"
 	pb "github.com/todo-lists-app/protobufs/generated/id_checker/v1"
 )
 
 type Server struct {
-	Config *config.Config
+	Config *gc.Config
 	pb.UnimplementedIdCheckerServiceServer
 }
 
