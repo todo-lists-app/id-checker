@@ -6,6 +6,7 @@ import (
 	"github.com/Nerzal/gocloak/v13"
 	"github.com/bugfixes/go-bugfixes/logs"
 	"github.com/go-resty/resty/v2"
+	"github.com/keloran/go-config/keycloak"
 	"strings"
 	"time"
 
@@ -15,18 +16,52 @@ import (
 )
 
 type Server struct {
-	Config *gc.Config
+	Config  *gc.Config
+	GoCloak GocloakInterface
+
 	pb.UnimplementedIdCheckerServiceServer
 }
 
 type GocloakInterface interface {
+	GetClient(ctx context.Context, cfg keycloak.Keycloak) *gocloak.GoCloak
 	LoginClient(ctx context.Context, clientID, clientSecret, realm string) (*gocloak.JWT, error)
 	GetUserByID(ctx context.Context, token, realm, userID string) (*gocloak.User, error)
 	RetrospectToken(ctx context.Context, token, clientID, clientSecret, realm string) (*gocloak.IntroSpectTokenResult, error)
 }
 
+type RealGoCloak struct {
+	Client *gocloak.GoCloak
+}
+
+func (r *RealGoCloak) GetClient(ctx context.Context, cfg keycloak.Keycloak) *gocloak.GoCloak {
+	client := gocloak.NewClient(cfg.Host)
+	cond := func(resp *resty.Response, err error) bool {
+		if resp != nil && resp.IsError() {
+			if e, ok := resp.Error().(*gocloak.HTTPErrorResponse); ok {
+				msg := e.String()
+				logs.Infof("error: %s", msg)
+				return strings.Contains(msg, "Cached clientScope not found") || strings.Contains(msg, "unknown_error")
+			}
+		}
+		return false
+	}
+	rest := client.RestyClient()
+	rest.SetRetryCount(10).SetRetryWaitTime(2 * time.Second).AddRetryCondition(cond)
+	client.SetRestyClient(rest)
+	return client
+}
+func (r *RealGoCloak) LoginClient(ctx context.Context, clientID, clientSecret, realm string) (*gocloak.JWT, error) {
+	return r.Client.LoginClient(ctx, clientID, clientSecret, realm)
+}
+func (r *RealGoCloak) GetUserByID(ctx context.Context, token, realm, userID string) (*gocloak.User, error) {
+	return r.Client.GetUserByID(ctx, token, realm, userID)
+}
+func (r *RealGoCloak) RetrospectToken(ctx context.Context, token, clientID, clientSecret, realm string) (*gocloak.IntroSpectTokenResult, error) {
+	return r.Client.RetrospectToken(ctx, token, clientID, clientSecret, realm)
+}
+
 func (s *Server) CheckId(ctx context.Context, r *pb.CheckIdRequest) (*pb.CheckIdResponse, error) {
-	validId, err := CheckId(ctx, s.Config, r.GetId(), r.GetAccessToken())
+	validId, err := CheckId(ctx, s.Config, r.GetId(), r.GetAccessToken(), s.GoCloak)
 	if err != nil {
 		return &pb.CheckIdResponse{
 			IsValid: false,
@@ -35,6 +70,7 @@ func (s *Server) CheckId(ctx context.Context, r *pb.CheckIdRequest) (*pb.CheckId
 	}
 
 	if !validId {
+		logs.Infof("id is not valid: %s", r.GetId())
 		return &pb.CheckIdResponse{
 			IsValid: false,
 			Status:  pointerutil.StringPtr("id is not valid"),
@@ -46,19 +82,12 @@ func (s *Server) CheckId(ctx context.Context, r *pb.CheckIdRequest) (*pb.CheckId
 	}, nil
 }
 
-func CheckId(ctx context.Context, cfg *gc.Config, userId, accessToken string) (bool, error) {
-	client := gocloak.NewClient(cfg.Keycloak.Host)
-	cond := func(resp *resty.Response, err error) bool {
-		if resp != nil && resp.IsError() {
-			if e, ok := resp.Error().(*gocloak.HTTPErrorResponse); ok {
-				msg := e.String()
-				return strings.Contains(msg, "Cached clientScope not found") || strings.Contains(msg, "unknown_error")
-			}
-		}
-		return false
+func CheckId(ctx context.Context, cfg *gc.Config, userId, accessToken string, gc GocloakInterface) (bool, error) {
+	client := gc.GetClient(ctx, cfg.Keycloak)
+	if client == nil {
+		return false, logs.Errorf("error getting client")
 	}
-	rest := client.RestyClient()
-	rest.SetRetryCount(10).SetRetryWaitTime(2 * time.Second).AddRetryCondition(cond)
+
 	token, err := client.LoginClient(ctx, cfg.Keycloak.Client, cfg.Keycloak.Secret, cfg.Keycloak.Realm)
 	if err != nil {
 		return false, logs.Errorf("error logging in: %v", err)
@@ -68,6 +97,7 @@ func CheckId(ctx context.Context, cfg *gc.Config, userId, accessToken string) (b
 		return false, logs.Errorf("error getting user: %v", err)
 	}
 	if user == nil {
+		logs.Infof("user not found: %s", userId)
 		return false, nil
 	}
 
@@ -76,5 +106,13 @@ func CheckId(ctx context.Context, cfg *gc.Config, userId, accessToken string) (b
 		return false, logs.Errorf("error introspecting token: %v", err)
 	}
 
-	return *retroToken.Active, nil
+	if *retroToken.Active == false && token.ExpiresIn < 1 {
+		return false, logs.Errorf("token is not active")
+	}
+
+	if *retroToken.Active == false && token.ExpiresIn > 1 {
+		return true, nil
+	}
+
+	return false, logs.Error("something went wrong")
 }
