@@ -3,12 +3,13 @@ package checker
 import (
 	"context"
 	"fmt"
+	"strings"
+	"time"
+
 	"github.com/Nerzal/gocloak/v13"
 	"github.com/bugfixes/go-bugfixes/logs"
 	"github.com/go-resty/resty/v2"
 	"github.com/keloran/go-config/keycloak"
-	"strings"
-	"time"
 
 	"github.com/hashicorp/vault/sdk/helper/pointerutil"
 	gc "github.com/keloran/go-config"

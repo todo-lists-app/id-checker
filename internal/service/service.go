@@ -2,10 +2,11 @@ package service
 
 import (
 	"fmt"
-	"google.golang.org/grpc/reflection"
 	"net"
 	"net/http"
 	"time"
+
+	"google.golang.org/grpc/reflection"
 
 	"github.com/bugfixes/go-bugfixes/logs"
 	"github.com/go-chi/chi/v5"
