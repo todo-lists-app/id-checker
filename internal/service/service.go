@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"time"
 
+	"google.golang.org/grpc/reflection"
+
 	"github.com/bugfixes/go-bugfixes/logs"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
@@ -40,8 +42,10 @@ func startGRPC(port int, errChan chan error, cfg *gc.Config) {
 	gs := grpc.NewServer()
 	logs.Local().Infof("starting grpc on %s", lis.Addr().String())
 	pb.RegisterIdCheckerServiceServer(gs, &checker.Server{
-		Config: cfg,
+		Config:  cfg,
+		GoCloak: &checker.RealGoCloak{},
 	})
+	reflection.Register(gs)
 	if err := gs.Serve(lis); err != nil {
 		errChan <- logs.Errorf("failed to serve: %v", err)
 	}
