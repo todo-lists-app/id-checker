@@ -11,7 +11,7 @@ require (
 	github.com/keloran/go-config v0.3.0
 	github.com/keloran/go-healthcheck v1.2.1
 	github.com/keloran/go-probe v1.0.0
-	github.com/todo-lists-app/protobufs v0.0.0-20230813210309-8801c8db57fd
+	github.com/todo-lists-app/protobufs v0.1.2
 	google.golang.org/grpc v1.57.0
 )
 
