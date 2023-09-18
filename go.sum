@@ -126,8 +126,8 @@ github.com/stretchr/testify v1.8.2/go.mod h1:w2LPCIKwWwSfY2zedu0+kehJoqGctiVI29o
 github.com/stretchr/testify v1.8.3/go.mod h1:sz/lmYIOXD/1dqDmKjjqLyZ2RngseejIcXlSw2iwfAo=
 github.com/stretchr/testify v1.8.4 h1:CcVxjf3Q8PM0mHUKJCdn+eZZtm5yQwehR5yeSVQQcUk=
 github.com/stretchr/testify v1.8.4/go.mod h1:sz/lmYIOXD/1dqDmKjjqLyZ2RngseejIcXlSw2iwfAo=
-github.com/todo-lists-app/protobufs v0.0.0-20230813210309-8801c8db57fd h1:qJSbzKN7EGCdLgfdM57c2Sp/6sIrQhGZrxuJN/HvCYs=
-github.com/todo-lists-app/protobufs v0.0.0-20230813210309-8801c8db57fd/go.mod h1:++aQjX2RgYmrKu32JKXipEG1H2vu/bqMTCdR03ZPrPM=
+github.com/todo-lists-app/protobufs v0.1.2 h1:ruTiVHi6KobYDChw4AKyRGB95YIfDCIo6altlCT3YoI=
+github.com/todo-lists-app/protobufs v0.1.2/go.mod h1:++aQjX2RgYmrKu32JKXipEG1H2vu/bqMTCdR03ZPrPM=
 github.com/xdg-go/pbkdf2 v1.0.0 h1:Su7DPu48wXMwC3bs7MCNG+z4FhcyEuz5dlvchbq0B0c=
 github.com/xdg-go/pbkdf2 v1.0.0/go.mod h1:jrpuAogTd400dnrH08LKmI/xc1MbPOebTwRqcT5RDeI=
 github.com/xdg-go/scram v1.1.2 h1:FHX5I5B4i4hKRVRBCFRxq1iQRej7WO3hhBuJf+UUySY=
