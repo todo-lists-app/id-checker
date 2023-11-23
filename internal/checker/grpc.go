@@ -24,7 +24,7 @@ type Server struct {
 }
 
 type GocloakInterface interface {
-	GetClient(ctx context.Context, cfg keycloak.Keycloak) *gocloak.GoCloak
+	GetClient(cfg keycloak.Keycloak) *gocloak.GoCloak
 	LoginClient(ctx context.Context, clientID, clientSecret, realm string) (*gocloak.JWT, error)
 	GetUserByID(ctx context.Context, token, realm, userID string) (*gocloak.User, error)
 	RetrospectToken(ctx context.Context, token, clientID, clientSecret, realm string) (*gocloak.IntroSpectTokenResult, error)
@@ -34,7 +34,7 @@ type RealGoCloak struct {
 	Client *gocloak.GoCloak
 }
 
-func (r *RealGoCloak) GetClient(ctx context.Context, cfg keycloak.Keycloak) *gocloak.GoCloak {
+func (r *RealGoCloak) GetClient(cfg keycloak.Keycloak) *gocloak.GoCloak {
 	client := gocloak.NewClient(cfg.Host)
 	cond := func(resp *resty.Response, err error) bool {
 		if resp != nil && resp.IsError() {
@@ -84,7 +84,7 @@ func (s *Server) CheckId(ctx context.Context, r *pb.CheckIdRequest) (*pb.CheckId
 }
 
 func CheckId(ctx context.Context, cfg *gc.Config, userId, accessToken string, gc GocloakInterface) (bool, error) {
-	client := gc.GetClient(ctx, cfg.Keycloak)
+	client := gc.GetClient(cfg.Keycloak)
 	if client == nil {
 		return false, logs.Errorf("error getting client")
 	}
