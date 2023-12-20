@@ -5,7 +5,7 @@ go 1.21
 require (
 	github.com/Nerzal/gocloak/v13 v13.8.0
 	github.com/bugfixes/go-bugfixes v0.9.8
-	github.com/go-chi/chi/v5 v5.0.10
+	github.com/go-chi/chi/v5 v5.0.11
 	github.com/go-resty/resty/v2 v2.10.0
 	github.com/hashicorp/vault/sdk v0.10.2
 	github.com/keloran/go-config v0.4.1
