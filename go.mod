@@ -3,7 +3,7 @@ module github.com/todo-lists-app/id-checker
 go 1.21
 
 require (
-	github.com/Nerzal/gocloak/v13 v13.8.0
+	github.com/Nerzal/gocloak/v13 v13.9.0
 	github.com/bugfixes/go-bugfixes v0.9.8
 	github.com/go-chi/chi/v5 v5.0.11
 	github.com/go-resty/resty/v2 v2.11.0
@@ -21,7 +21,7 @@ require (
 	github.com/go-jose/go-jose/v3 v3.0.1 // indirect
 	github.com/go-logfmt/logfmt v0.6.0 // indirect
 	github.com/go-ping/ping v1.1.0 // indirect
-	github.com/golang-jwt/jwt/v4 v4.5.0 // indirect
+	github.com/golang-jwt/jwt/v5 v5.0.0 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/google/uuid v1.4.0 // indirect
