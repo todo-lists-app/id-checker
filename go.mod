@@ -8,7 +8,7 @@ require (
 	github.com/go-chi/chi/v5 v5.0.12
 	github.com/go-resty/resty/v2 v2.11.0
 	github.com/hashicorp/vault/sdk v0.11.0
-	github.com/keloran/go-config v0.4.3
+	github.com/keloran/go-config v0.4.4
 	github.com/keloran/go-healthcheck v1.2.1
 	github.com/keloran/go-probe v1.0.0
 	github.com/todo-lists-app/protobufs v0.1.2
