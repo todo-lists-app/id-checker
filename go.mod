@@ -1,6 +1,7 @@
 module github.com/todo-lists-app/id-checker
 
 go 1.21
+toolchain go1.22.5
 
 require (
 	github.com/Nerzal/gocloak/v13 v13.9.0
@@ -12,7 +13,7 @@ require (
 	github.com/keloran/go-healthcheck v1.2.1
 	github.com/keloran/go-probe v1.0.0
 	github.com/todo-lists-app/protobufs v0.1.2
-	google.golang.org/grpc v1.67.1
+	google.golang.org/grpc v1.69.2
 )
 
 require (
@@ -55,6 +56,6 @@ require (
 	golang.org/x/sys v0.28.0 // indirect
 	golang.org/x/text v0.21.0 // indirect
 	golang.org/x/time v0.6.0 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20240814211410-ddb44dafa142 // indirect
-	google.golang.org/protobuf v1.34.2 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20241015192408-796eee8c2d53 // indirect
+	google.golang.org/protobuf v1.35.1 // indirect
 )
