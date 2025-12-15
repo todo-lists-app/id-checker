@@ -6,7 +6,7 @@ require (
 	github.com/Nerzal/gocloak/v13 v13.9.0
 	github.com/bugfixes/go-bugfixes v0.14.0
 	github.com/go-chi/chi/v5 v5.2.3
-	github.com/go-resty/resty/v2 v2.17.0
+	github.com/go-resty/resty/v2 v2.17.1
 	github.com/hashicorp/vault/sdk v0.20.0
 	github.com/keloran/go-config v0.5.4
 	github.com/keloran/go-healthcheck v1.2.1
