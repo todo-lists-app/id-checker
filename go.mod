@@ -7,7 +7,7 @@ require (
 	github.com/bugfixes/go-bugfixes v0.16.1
 	github.com/go-chi/chi/v5 v5.2.5
 	github.com/go-resty/resty/v2 v2.17.2
-	github.com/hashicorp/vault/sdk v0.24.0
+	github.com/hashicorp/vault/sdk v0.25.0
 	github.com/keloran/go-config v0.5.4
 	github.com/keloran/go-healthcheck v1.2.1
 	github.com/keloran/go-probe v1.0.0
